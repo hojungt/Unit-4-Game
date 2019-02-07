@@ -1,11 +1,16 @@
 // Set target
+// DEMO NOTE: TARGET NUMBER IS RANDOMLY GENERATED BETWEEN 19-180
 var targetNumber = 53;
 $("#number-to-guess").text(targetNumber);
 
-// Set initial value and number options 
+// Set initial value and number options
+// DEMO NOTE: OPTION VALUE IS RANDOMLY SELECTED BETWEEN 1-12
 var counter = 0;
 var numberOptions = [10, 5, 3, 7];
 
+// Set intial win and lose value:
+var win = 0;
+var lose = 0;
 
 // For Loop to append number options with class, image, and attribute
 for (var i = 0; i < numberOptions.length; i++) {
@@ -29,7 +34,7 @@ $(".crystal-image").on("click", function() {
 
     var crystalValue = ($(this).attr("data-crystalvalue"));
     crystalValue = parseInt(crystalValue);
-    // We then add the crystalValue to the user's "counter" which is a global variable.
+
     // Every click, from every crystal adds to the global counter.
     counter += crystalValue;
 
