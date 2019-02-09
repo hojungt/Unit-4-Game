@@ -1,10 +1,15 @@
+// NOTE TO SELF:
+// 1. NUMBER OPTIONS NO REPEAT?
+// 2. CHANGE ALL VAR TO STATE.OBJECT TO RESET GAME (REFER TO ASSIGNMENT 3)
+
 // Set target number as a randomly generated value between 19-180:
 var targetNumber = Math.floor(Math.random() * (180-19)) + 1;
-console.log (targetNumber);
-$("#number-to-guess").text(targetNumber);
 
-// Set initial value and number options to be four numbers between 1-12
-// shuffle and avoid selecting same number twice? (see in-class exercise)
+// Set intial win and lose value:
+var winNumber = 0;
+var loseNumber = 0;
+
+// Set counter value and number options to be four numbers between 1-12
 var counter = 0;
 var numberOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 var newNumberOptions = [];
@@ -14,54 +19,49 @@ for (var i = 0; i < 4; i++) {
   newNumberOptions.push(pickedNumbers);
   console.log (pickedNumbers);
 }
-
 console.log (newNumberOptions);
 
-// Set intial win and lose value:
-var winNumber = 0;
-var loseNumber = 0;
-var totalScore = 0;
-
 // link values to HTML element (to be put in logical operators):
-$("win-count").text(winNumber);
-$("lose-count").text(loseNumber);
-$("total-score").text(totalScore);
+$("#number-to-guess").text(targetNumber);
+$("#win-count").text(winNumber);
+$("#lose-count").text(loseNumber);
+$("#total-score").text(counter);
 
-// For Loop to append number options with class, image, and attribute
-for (var i = 0; i < 4; i++) {
+// For Loop to append crystals with class and image attribute
+for (var i = 0; i < newNumberOptions.length; i++) {
 
     var imageCrystal = $("<img>");
     imageCrystal.addClass("crystal-image");
-    imageCrystal.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");
+    imageCrystal.attr("src", "./assets/images/g" + i + ".png");
 
     // This data attribute will be set equal to the array value.
-    imageCrystal.attr("data-crystalvalue", numberOptions[i]);
+    imageCrystal.attr("data-crystalvalue", newNumberOptions[i]);
     $("#crystals").append(imageCrystal);
     }
 
 // On-click event for every crystal
 $(".crystal-image").on("click", function() {
 
-    // Determining the crystal's value requires us to extract the value from the data attribute.
-    // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
-    // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
+    // Determine the crystal's value by extracting the value from data attribute
     // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
-
     var crystalValue = ($(this).attr("data-crystalvalue"));
     crystalValue = parseInt(crystalValue);
 
     // Every click, from every crystal adds to the global counter.
     counter += crystalValue;
+    $("#total-score").text(counter);
 
     // Set win-lose logic
-    alert("New score: " + counter);
-
     if (counter === targetNumber) {
       alert("You win!");
+      winNumber += 1;
+      $("#win-count").text(winNumber);
     }
 
     else if (counter >= targetNumber) {
       alert("You lose!!");
+      loseNumber += 1;
+      $("#lose-count").text(loseNumber);
     }
 
   });
