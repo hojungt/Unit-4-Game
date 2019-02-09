@@ -1,19 +1,34 @@
-// Set target
-// DEMO NOTE: TARGET NUMBER IS RANDOMLY GENERATED BETWEEN 19-180
-var targetNumber = 53;
+// Set target number as a randomly generated value between 19-180:
+var targetNumber = Math.floor(Math.random() * (180-19)) + 1;
+console.log (targetNumber);
 $("#number-to-guess").text(targetNumber);
 
-// Set initial value and number options
-// DEMO NOTE: OPTION VALUE IS RANDOMLY SELECTED BETWEEN 1-12
+// Set initial value and number options to be four numbers between 1-12
+// shuffle and avoid selecting same number twice? (see in-class exercise)
 var counter = 0;
-var numberOptions = [10, 5, 3, 7];
+var numberOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+var newNumberOptions = [];
+
+for (var i = 0; i < 4; i++) {
+  var pickedNumbers = 1 + Math.floor(Math.random() * numberOptions.length);
+  newNumberOptions.push(pickedNumbers);
+  console.log (pickedNumbers);
+}
+
+console.log (newNumberOptions);
 
 // Set intial win and lose value:
-var win = 0;
-var lose = 0;
+var winNumber = 0;
+var loseNumber = 0;
+var totalScore = 0;
+
+// link values to HTML element (to be put in logical operators):
+$("win-count").text(winNumber);
+$("lose-count").text(loseNumber);
+$("total-score").text(totalScore);
 
 // For Loop to append number options with class, image, and attribute
-for (var i = 0; i < numberOptions.length; i++) {
+for (var i = 0; i < 4; i++) {
 
     var imageCrystal = $("<img>");
     imageCrystal.addClass("crystal-image");
