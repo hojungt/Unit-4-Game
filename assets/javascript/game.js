@@ -1,84 +1,117 @@
-// NOTE TO SELF:
-// 2. CHANGE ALL VAR TO STATE.OBJECT TO RESET GAME (REFER TO ASSIGNMENT 3)
+// Variable - set game state object:
 
-// Set target number as a randomly generated value between 19-180:
-var targetNumber = Math.floor(Math.random() * (180-19)) + 1;
+var state = {
+  // target number as a randomly generated value between 19-180
+  targetNumber: Math.floor(Math.random() * (180-19)) + 20,
+  // intial win value
+  winNumber: 0,
+  // initial lose value
+  loseNumber: 0,
+  // initial counter value
+  counter: 0,
+  // number options as four randomly selected value between 1-12
+  numberOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  // actual four number options
+  newNumberOptions: [],
+};
+// checkpoint: targetNumber
+// console.log(state.targetNumber);
 
-// Set intial win and lose value:
-var winNumber = 0;
-var loseNumber = 0;
-
-// Set counter value and number options to be four numbers between 1-12
-var counter = 0;
-var numberOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-var newNumberOptions = [];
+// Function - choosing four unique numbers as actual number options
+// Use a recursive function outside of For Loop to avoid repeated numbers
+// (courtesy of TA-Pete)
 
 function setNumbersForButtons(){
   for (var i = 0; i < 4; i++) {
-    var pickedNumbers = 1 + Math.floor(Math.random() * numberOptions.length);
-    if(newNumberOptions.includes(pickedNumbers)){
+    var pickedNumbers = 1 + Math.floor(Math.random() * state.numberOptions.length);
+    if(state.newNumberOptions.includes(pickedNumbers)){
       recursiveButtons();
     }
     else {  
-      newNumberOptions.push(pickedNumbers);
+      state.newNumberOptions.push(pickedNumbers);
     }
   }
 }
-setNumbersForButtons();
-console.log (newNumberOptions);
 
-// (TA - Pete) using a recursive function outside of For Loop to avoid repeated numbers
+setNumbersForButtons();
+// checkpoint: all four numbers are unique!
+// console.log(state.newNumberOptions);
+
 function recursiveButtons(){
-  var newNum = 1 + Math.floor(Math.random() * numberOptions.length);
-  if(newNumberOptions.includes(newNum)){
+  var newNum = 1 + Math.floor(Math.random() * state.numberOptions.length);
+  if(state.newNumberOptions.includes(newNum)){
     recursiveButtons();
   }
   else {
-    newNumberOptions.push(newNum);
+    state.newNumberOptions.push(newNum);
   }
 }
 
-// link values to HTML element (to be put in logical operators):
-$("#number-to-guess").text(targetNumber);
-$("#win-count").text(winNumber);
-$("#lose-count").text(loseNumber);
-$("#total-score").text(counter);
+// Link values to HTML element (to be put in logical operators):
+$("#number-to-guess").text(state.targetNumber);
+$("#win-count").text(state.winNumber);
+$("#lose-count").text(state.loseNumber);
+$("#total-score").text(state.counter);
 
-// For Loop to append crystals with class and image attribute
-for (var i = 0; i < newNumberOptions.length; i++) {
+// For Loop - append crystals with class and image attribute:
+for (var i = 0; i < state.newNumberOptions.length; i++) {
 
   var imageCrystal = $("<img>");
   imageCrystal.addClass("crystal-image");
   imageCrystal.attr("src", "./assets/images/g" + i + ".png");
 
-  // This data attribute will be set equal to the array value.
-  imageCrystal.attr("data-crystalvalue", newNumberOptions[i]);
+  imageCrystal.attr("data-crystalvalue", state.newNumberOptions[i]);
   $("#crystals").append(imageCrystal);
   }
 
+// Function - game complete reload:
+function reloadPage() {
+  location.reload();
+}
+
+// Function - game round reload:
+function setNewState() {
+  state.counter = 0;
+  $("#total-score").text(0);
+  state.newNumberOptions.length = 0;
+  state.targetNumber = Math.floor(Math.random() * (180-19)) + 20;
+  $("#number-to-guess").text(state.targetNumber);
+}
+
+// checkpoint: new target number and new number options:
+// setNewState();
+// console.log(state.targetNumber);
+// console.log(state.newNumberOptions);
+
+// ==============================================================================
 // On-click event for every crystal
 $(".crystal-image").on("click", function() {
 
   // Determine the crystal's value by extracting the value from data attribute
-  // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
   var crystalValue = ($(this).attr("data-crystalvalue"));
   crystalValue = parseInt(crystalValue);
 
   // Every click, from every crystal adds to the global counter.
-  counter += crystalValue;
-  $("#total-score").text(counter);
+  state.counter += crystalValue;
+  $("#total-score").text(state.counter);
 
   // Set win-lose logic
-  if (counter === targetNumber) {
+  if (state.counter === state.targetNumber) {
     alert("You win!");
-    winNumber += 1;
-    $("#win-count").text(winNumber);
+    state.winNumber += 1;
+    $("#win-count").text(state.winNumber);
+    setNewState();
+    setNumbersForButtons();
+
   }
 
-  else if (counter >= targetNumber) {
-    alert("You lose!!");``
-    loseNumber += 1;
-    $("#lose-count").text(loseNumber);
+  else if (state.counter >= state.targetNumber) {
+    alert("You lose!!");
+    state.loseNumber += 1;
+    $("#lose-count").text(state.loseNumber);
+    setNewState();
+    setNumbersForButtons();
+
   }
 
 });
