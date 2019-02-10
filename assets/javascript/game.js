@@ -110,21 +110,31 @@ $(".crystal-image").on("click", function() {
 
   // Set win-lose logic
   if (state.counter === state.targetNumber) {
-    alert("You win!");
     state.winNumber += 1;
     $("#win-count").text(state.winNumber);
     setNewState();
     setNumbersForButtons();
     changeCrystals()
+
+    if (state.winNumber > 2) {
+      alert("YOU ARE PURE MAGIC! :)");
+      alert("play again?");
+      reloadPage();
+    }
   }
 
   else if (state.counter >= state.targetNumber) {
-    alert("You lose!!");
     state.loseNumber += 1;
     $("#lose-count").text(state.loseNumber);
     setNewState();
     setNumbersForButtons();
     changeCrystals()
+    
+    if (state.loseNumber > 2) {
+      alert("YOU ARE OUT!");
+      alert("play again?");
+      reloadPage();
+    }
   }
 
 });

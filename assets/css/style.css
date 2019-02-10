@@ -9,6 +9,15 @@ header {
     border-bottom: 1px solid #cccccc;
 }
 
+footer {
+    font-size: .75em;
+    color: #cccccc;
+    background-color: #666666;
+    padding: 20px 0px 0px 0px;
+    border-top: 5px solid #cccccc;
+}
+
+
 /* nav */
 
 #logo {
@@ -20,8 +29,8 @@ header {
 }
 
 ul li {
-    border-left: 1px solid #cccccc;
     line-height: 100%;
+    padding: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -38,24 +47,37 @@ h2 {
 
 }
 
+h3 {
+    color: #666666;
+    text-decoration: underline;
+}
+
 p {
-    line-height: 20px;
+    line-height: 12px;
     color: #777777;
 }
 
 #main-content {
     background-color: #ffffff;
     border: .5px solid #dddddd;
-    padding-top: 30px;
+    padding-top: 20px;
     padding-bottom: 20px;
     margin-bottom: 50px;
 }
 
 /* main content - crystal collector */
 
+#win-count {
+    color: #75b99f;
+}
+
+#lose-count {
+    color: #d26f8f;
+}
 
 .crystal-image {
-    width: 15%;
+    width: 12%;
     background-color: #ffffff;
+    padding: 10px;
 }
 
