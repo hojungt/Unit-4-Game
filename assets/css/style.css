@@ -1,4 +1,61 @@
+body {
+    background: url("../images/light-grey-terrazzo.png");
+    font-family: 'Titillium Web', sans-serif;
+
+}
+
+header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #cccccc;
+}
+
+/* nav */
+
+#logo {
+    font-family: 'Bungee Shade', cursive;
+    color: #ffffff;
+    background-color: #df7f99;
+    font-size: 1.25em;
+    padding: 20px;
+}
+
+ul li {
+    border-left: 1px solid #cccccc;
+    line-height: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.nav-link {
+    color: grey;
+}
+
+
+/* main content */
+
+h2 {
+
+
+}
+
+p {
+    line-height: 20px;
+    color: #777777;
+}
+
+#main-content {
+    background-color: #ffffff;
+    border: .5px solid #dddddd;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+}
+
+/* main content - crystal collector */
+
+
 .crystal-image {
     width: 15%;
+    background-color: #ffffff;
 }
 

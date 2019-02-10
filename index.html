@@ -5,26 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Crystal Collector</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Titillium+Web" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css" />
+    <link rel="icon" href="./assets/images/g0.png">
 </head>
 <body>
-    <h1>Crystal Collector</h1>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" id="logo">
+                    <div><h1>Crystal Collector</h1></div>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://hojungt.github.io/Responsive-Portfolio/portfolio.html">Return to Portfolio<span class="sr-only">(current)</span></a>
+                        </li>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <p>You will be given a random number at the start of the game.</p>
-    <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
-    <p>You win the game by matching your total score to random number, and you lose the game if your total score goes above the random number.</p>
-    <p>The value of each crystal is hidden from you until you click on it.</p>
-    <p>Each time when the game starts, the game will change the value of each crystal.</p>
+    <br />
+    <div class="container" id="main-content">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Number to Guess: <span id="number-to-guess"></span></h2>
+                <h2>Your total score is: <span id="total-score"></span></h2>
+            </div>
+            <div class="col-md-6">
+                <h2>Win: <span id="win-count"></span></h2>
+                <h2>Lose: <span id="lose-count"></span></h2>            
+            </div>
+            <div class="col-md-6">
+                    <div id="crystals"></div>                
+            </div>
+            
+            <div class="col-md-12">
+                <h3>Instruction:</h3>
+                <p>You will be given a random number at the start of the game.</p>
+                <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
+                <p>You win the game by matching your total score to random number, and you lose the game if your total score goes above the random number.</p>
+                <p>The value of each crystal is hidden from you until you click on it.</p>
+                <p>Each time when the game starts, the game will change the value of each crystal.</p>
+            </div>
+        </div>
 
-    <h2>Number to Guess: <span id="number-to-guess"></span></h2>
-
-    <h2>Win: <span id="win-count"></span></h2>
-    <h2>Lose: <span id="lose-count"></span></h2>
-
-    <div id="crystals">
     </div>
-
-    <h2>Your total score is: <span id="total-score"></span></h2>
     
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/game.js"></script>   
