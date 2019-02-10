@@ -14,8 +14,15 @@ var state = {
   // actual four number options
   newNumberOptions: [],
 };
+
 // checkpoint: targetNumber
 // console.log(state.targetNumber);
+
+// Link values to HTML element (to be put in logical operators):
+$("#number-to-guess").text(state.targetNumber);
+$("#win-count").text(state.winNumber);
+$("#lose-count").text(state.loseNumber);
+$("#total-score").text(state.counter);
 
 // Function - choosing four unique numbers as actual number options
 // Use a recursive function outside of For Loop to avoid repeated numbers
@@ -47,21 +54,25 @@ function recursiveButtons(){
   }
 }
 
-// Link values to HTML element (to be put in logical operators):
-$("#number-to-guess").text(state.targetNumber);
-$("#win-count").text(state.winNumber);
-$("#lose-count").text(state.loseNumber);
-$("#total-score").text(state.counter);
-
 // For Loop - append crystals with class and image attribute:
 for (var i = 0; i < state.newNumberOptions.length; i++) {
 
   var imageCrystal = $("<img>");
   imageCrystal.addClass("crystal-image");
+  imageCrystal.addClass("crystal-image-"+i);
   imageCrystal.attr("src", "./assets/images/g" + i + ".png");
-
   imageCrystal.attr("data-crystalvalue", state.newNumberOptions[i]);
   $("#crystals").append(imageCrystal);
+  }
+
+// Function - append crystals with new option numbers:
+// (courtesy of Henry-Classmate)
+function changeCrystals(){
+  for (var i = 0; i < state.newNumberOptions.length; i++) {
+    var imageCrystal = $(".crystal-image-"+i);
+    imageCrystal.attr("data-crystalvalue", state.newNumberOptions[i]);
+    $("#crystals").append(imageCrystal);
+    }
   }
 
 // Function - game complete reload:
@@ -73,10 +84,12 @@ function reloadPage() {
 function setNewState() {
   state.counter = 0;
   $("#total-score").text(0);
-  state.newNumberOptions.length = 0;
+  state.newNumberOptions = [];
   state.targetNumber = Math.floor(Math.random() * (180-19)) + 20;
+  console.log("state: ", state, state.targetNumber, state.newNumberOptions);
   $("#number-to-guess").text(state.targetNumber);
 }
+
 
 // checkpoint: new target number and new number options:
 // setNewState();
@@ -102,7 +115,7 @@ $(".crystal-image").on("click", function() {
     $("#win-count").text(state.winNumber);
     setNewState();
     setNumbersForButtons();
-
+    changeCrystals()
   }
 
   else if (state.counter >= state.targetNumber) {
@@ -111,7 +124,7 @@ $(".crystal-image").on("click", function() {
     $("#lose-count").text(state.loseNumber);
     setNewState();
     setNumbersForButtons();
-
+    changeCrystals()
   }
 
 });
