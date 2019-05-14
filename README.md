@@ -2,6 +2,8 @@
 
 __[Crystal Collector](https://hojungt.github.io/Unit-4-Game/)__ is a dynamic web game that commputes simple arithmetics on user choice to check if it matches the game's hidden number.
 
+![screenshot](./assets/images/screenshot.png)
+
 - __Game Rules:__
 1. A hidden number between 19 and 180 is picked randomly by the app at start of the game.
 2. Each of the four crystals holds a unique value between 1 and 12. By clicking on a crystal, you will add their corresponding values to your total number.
